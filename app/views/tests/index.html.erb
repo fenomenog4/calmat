@@ -1,0 +1,32 @@
+<h1>Listado de pr&aacute;cticas</h1>
+
+<%= render :partial => 'shared/flash_messages' %>
+
+<% unless @tests.empty? %>
+  <table class="tests">
+    <tr>
+      <th>Descripci&oacute;n</th>
+      <th>Enunciado</th>
+
+      <% if logged_as_admin? %>
+        <th><!-- Editar --></th>
+        <th><!-- Eliminar --></th>
+      <% else %>
+        <th>Introducir resultados</th>
+      <% end %>
+    </tr>
+
+    <%= render :partial => 'test', :collection => @tests %>
+  </table>
+<% else %>
+  <div class="notice">El listado de pr&aacute;cticas est&aacute; vac&iacute;o</div>
+<% end %>
+
+<%= will_paginate @tests %>
+
+<br />
+
+<% if logged_as_admin? %>
+  <%= link_to image_tag('icons/application_add.png', :alt => '') + ' Nueva pr&aacute;ctica',
+    new_test_path, :class => 'button positive' %>
+<% end %>

@@ -1,0 +1,28 @@
+<h1><%= @test.title %></h1>
+
+<% if @test.description && !@test.description.empty? %>
+  <div>
+    <%= @test.description %>
+  </div>
+<% end %>
+
+<fieldset>
+  <% form_for @user_solution, :url => solve_test_path(@test) do |f| %>
+    <div>
+      <%= label_tag :user_solution_value,
+        'Resultado (lista de n&uacute;meros separados por comas, ej: 1.4, 142, 3.234E-5) \nNotación científica y 3 decimales' %><br />
+      <%= f.text_field :value, :class => 'text' %>
+      <%= error_message_on :user_solution, :value,
+        :prepend_text => 'La lista de resultados ' %><br/>
+    </div>
+
+    <br/>
+    <div>
+      <button type="submit" class="button positive">
+        <%= image_tag 'icons/accept.png', :alt => '' %> Aceptar
+      </button>
+      <%= link_to image_tag('icons/cancel.png', :alt => '') + ' Cancelar', tests_path,
+            :class => 'button negative' %>
+    </div>
+  <% end %>
+</fieldset>

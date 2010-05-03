@@ -1,0 +1,32 @@
+<h1>Log In</h1>
+
+<% if flash[:error] %>
+  <div class="error"><%= flash[:error] %></div>
+<% end %>
+<% if flash[:notice] %>
+  <div class="success"><%= flash[:notice] %></div>
+<% end %>
+
+<% form_tag session_path do -%>
+	<fieldset>
+		<legend>Acceder a tu cuenta o pincha <%= link_to 'aqu&iacute;', signup_path %></legend>
+
+		<p><%= label_tag 'login', 'DNI' %><br />
+		<%= text_field_tag 'login', @login, :class => 'text' %></p>
+
+		<p><%= label_tag 'password' %><br/>
+		<%= password_field_tag 'password', nil, :class => 'text' %></p>
+
+		<p><%= label_tag 'remember_me', 'Recordarme' %>
+		<%= check_box_tag 'remember_me', '1', @remember_me %></p>
+
+		<p style="display:block">
+			<button type="submit" class="button positive">
+				<%= image_tag 'icons/accept.png', :alt => '' %> Log in
+			</button>
+
+            <%= link_to image_tag('icons/add.png', :alt => '') + ' Reg&iacute;strate', signup_path,
+            :class => 'button positive' %>
+		</p>
+	</fieldset>
+<% end -%>

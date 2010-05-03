@@ -1,0 +1,16 @@
+<tr class="user">
+  <td class="dni"><%= link_to user.dni, user -%></td>
+  <td class="email"><%=h user.email %></td>
+  <td class="activar">
+    <% unless user.active? %>
+      <%= link_to image_tag('icons/award_star_gold_2.png',
+          :alt => 'Activar', :title => 'Activar'), force_activation_user_path(user),
+          :confirm => 'Estás seguro?' %>
+    <% end %>
+  </td>
+  <td class="eliminar">
+    <%= link_to image_tag('icons/application_delete.png',
+      :alt => 'Eliminar', :title => 'Eliminar'), user,
+      :confirm => 'Estás seguro?', :method => :delete %>
+  </td>
+</tr>

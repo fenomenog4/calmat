@@ -1,0 +1,22 @@
+<h1>Nuevo DNI</h1>
+
+<fieldset>
+  <legend>Introduce el DNI</legend>
+
+  <% form_for(@dni) do |f| %>
+
+    <div>
+      <%= label_tag :dni_value, 'DNI' %><br />
+      <%= f.text_field :value, :class => 'text' %>
+      <%= error_message_on :dni, :value, :prepend_text => 'El DNI ' %><br/>
+    </div>
+
+    <div>
+      <button type="submit" class="button positive">
+        <%= image_tag 'icons/accept.png', :alt => '' %> Aceptar
+      </button>
+      <%= link_to image_tag('icons/cancel.png', :alt => '') + ' Cancelar', dnis_path,
+            :class => 'button negative' %>
+    </div>
+  <% end %>
+</fieldset>

@@ -1,0 +1,16 @@
+<h1>Editing dni</h1>
+
+<% form_for(@dni) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :value %><br />
+    <%= f.text_field :value %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @dni %> |
+<%= link_to 'Back', dnis_path %>

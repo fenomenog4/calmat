@@ -1,0 +1,71 @@
+<h1><%= @user.dni %></h1>
+
+<div>
+  <label>Email</label><br />
+  <%= @user.email %>
+</div><br/>
+
+<div>
+  <label>Fecha de creaci&oacute;n de la cuenta</label><br />
+  <%= @user.created_at.strftime('%d/%m/%Y %H:%M') %>
+</div><br/>
+
+<div>
+  <label>Fecha de activaci&oacute;n de la cuenta</label><br />
+  <%= @user.activated_at.strftime('%d/%m/%Y %H:%M') %>
+</div><br/>
+
+
+<b>Informe de resultados:</b>
+<a href="#" onclick="$('.user_test_solutions').toggle(); return false" class="button" style="float:none; display:inline">
+  resumido
+</a> |
+<a href="#" onclick="$('.user_test_solutions').toggle(); return false" class="button" style="float:none; display:inline">
+  detallado
+</a>
+
+<table class="user_test_solutions">
+  <tr>
+    <th>T&iacute;tulo</th>
+    <th><!-- Resultado --></th>
+  </tr>
+  <% for user_solution in @user_solutions %>
+    <tr>
+      <td width="100%"><%= user_solution[:test].title -%></td>
+      <td>
+        <% if user_solution[:solution] == nil %>
+          <%= image_tag 'icons/flag_orange.png' %>
+        <% elsif user_solution[:solution].right? %>
+          <%= image_tag 'icons/flag_green.png' %>
+        <% else %>
+          <%= image_tag 'icons/flag_red.png' %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<table class="user_test_solutions" style="display:none">
+  <tr>
+    <th>T&iacute;tulo</th>
+    <th>Fecha</th>
+    <th><!-- Resultado --></th>
+  </tr>
+
+  <% for user_solution in @user_solutions_full %>
+    <tr>
+      <td width="85%"><%= user_solution.test.title -%></td>
+      <td width="15%"><%= user_solution.created_at.strftime('%d/%m/%Y %H:%M') -%></td>
+      <td>
+        <% if user_solution.right? %>
+          <%= image_tag 'icons/flag_green.png' %>
+        <% else %>
+          <%= image_tag 'icons/flag_red.png' %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to image_tag('icons/cancel.png', :alt => '') + ' Cancelar', users_path,
+            :class => 'button negative' %>

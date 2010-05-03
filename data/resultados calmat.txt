@@ -1,0 +1,23 @@
+Sí, eso es. Hasta hace poco no teniais el Calmat y creo que haciais
+una "simulación".
+
+No sé como estais comparando los datos calculados por el calmat con los
+introducidos por el alumno, para dar por buenos o no los resultados. Puesto
+que son numeros reales, y hay cierta "holgura", ya que el alumno los
+calculará a mano con menor precisión que el calmat, habría que compararlos de
+la siguiente forma. No vale por tanto comprobar que sean iguales, pues en
+general no serán exactamente iguales, y lo que hay que hacer es que estén
+dentro de una tolerancia.
+
+Supón que los datos calculados por el calmat son C1, C2, C3 (etc), y los
+introducidos por el alumno D1, D2, D3 (etc). Ahora calculamos la diferencia
+máxima normalizada:
+S = MÁXIMO[ABS{(Ci-Di)/Mi}]
+siendo
+Mi = Ci, si Ci <> 0, y Mi = 1 en caso contrario.
+
+Para dar por buenos los resultados tiene que ser S <= TOL, siendo TOL una
+tolerancia que será del ordén de 10^{-2}. Esta tolerancia tendriamos que
+poder tocarla, según la práctica que sea. Lo mejor es que sea un dato a
+introducir en cada práctica, pero por ahora dejalo como algo general, que
+valga eso, 10^{-2}.

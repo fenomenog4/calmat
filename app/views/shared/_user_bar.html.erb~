@@ -1,0 +1,6 @@
+<div class="user_bar">
+  <% unless logged_as_admin? %>
+    <%= mail_to 'AE@ugr.es', 'Si tienes algun problema manda un correo ...', :class => 'button' %>
+  <% end %>
+  <em>Hola <%= current_user.login %>, <%= link_to 'log out', logout_path, :class => 'button' %></em>
+</div>

@@ -1,0 +1,25 @@
+<h1>Listado de alumnos</h1>
+
+<%= render :partial => 'shared/flash_messages' %>
+
+<% unless @users.empty? %>
+  <table class="users">
+    <tr>
+      <th>DNI</th>
+      <th>email</th>
+      <th><!-- Activar --></th>
+      <th><!-- Eliminar --></th>
+    </tr>
+
+    <%= render :partial => 'user', :collection => @users %>
+  </table>
+<% else %>
+  <div class="notice">El listado de alumnos est&aacute; vac&iacute;o</div>
+<% end %>
+
+<%= will_paginate @users %>
+
+<br/>
+
+<%= link_to image_tag('icons/user_delete.png', :alt => '') + ' Eliminar usuarios',
+    delete_all_users_path, :method => :delete, :class => 'button negative' %>

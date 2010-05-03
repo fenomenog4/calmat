@@ -1,0 +1,139 @@
+#bd {
+    background: url(/images/bgbd.gif);
+    padding:15px 25px 15px 15px
+}
+
+#hd {
+    margin-top: 20px;
+    background: url(/images/bghd.gif) no-repeat;
+    height:207px;
+}
+
+#hd div.last {
+    text-align: right
+}
+
+#ft {
+   background: url(/images/bgft.gif) no-repeat;
+   height:65px;
+   padding: 10px 25px 0px 15px
+}
+
+#ft .user_bar em {
+    float: right;
+    text-align: right;
+}
+
+
+#ft .admin_bar {
+    float: left;
+    font-weight:bold;
+    color: #565656;
+    clear: both
+}
+
+#ft a {
+    float: none;
+    display: inline
+}
+
+.formError {
+    color: #8A1F11;
+}
+
+fieldset {
+    border:none
+}
+
+table.tests tr.test td.download,
+    table.tests tr.test td.edit,
+        table.tests tr.test td.delete {
+    text-align: left;
+}
+
+table.tests tr.test td.title {
+    width: 40%;
+}
+
+table.tests tr.test td.description {
+    width: 60%;
+}
+
+table.tests tr.test td.title a {
+    text-decoration: none;
+    color: black;
+    /*height: 16px;
+    display: block;
+    background: url(/images/icons/flag_yellow.png) no-repeat;
+    padding-left: 19px*/
+}
+
+/*table.tests tr.test td.title .green {
+    display: block;
+    padding-left: 19px;
+    background: url(/images/icons/flag_green.png) no-repeat;
+}
+
+table.tests tr.test td.title a.red {
+    background: url(/images/icons/flag_red.png) no-repeat;
+}*/
+
+table.tests tr.test td.title a:hover {
+    text-decoration: underline
+}
+
+table.dnis tr.dni td.value {
+    width:100%
+}
+
+table.users tr.user td.dni {
+    width:30%
+}
+
+table.users tr.user td.dni a {
+    color: black;
+    text-decoration:none
+}
+
+table.users tr.user td.dni a:hover {
+    text-decoration:underline
+}
+
+table.users tr.user td.email {
+    width:70%
+}
+
+.pagination {
+    padding:.3em;
+    margin:.3em;
+}
+
+.pagination a {
+    padding:.1em .3em;
+    margin:.2em;
+    border:1px solid #aad;
+    text-decoration:none;
+    color:#369;
+}
+
+.pagination a:hover, .pagination a:active {
+    border:1px solid #369;
+    color:#000;
+}
+
+.pagination span.current {
+    padding:.1em .3em;
+    margin:.2em;
+    border:1px solid #369;
+    font-weight:bold;
+    background-color:#369;
+    color:#FFF;
+}
+
+.pagination span.disabled {
+    padding: .1em .3em;
+    margin: .2em;
+    border: 1px solid #eee;
+    /*color:#ddd;*/
+    color: #336699
+}

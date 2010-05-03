@@ -1,0 +1,37 @@
+<div>
+  <%= label_tag :test_title, 'T&iacute;tulo' %><br />
+  <%= form.text_field :title, :class => 'text' %>
+  <%= error_message_on :test, :title, :prepend_text => 'El t&iacute;tulo ' %><br/>
+</div>
+
+<div>
+  <%= label_tag :test_description, 'Descripci&oacute;n' %><br />
+  <%= form.text_area :description, :class => 'text' %>
+  <%= error_message_on :test, :description, :prepend_text => 'La descripci&oacute;n ' %><br/>
+</div>
+
+<div>
+  <%= label_tag :test_data_file, 'Fichero de datos' %><br />
+  <%= form.file_field :data_file, :class => 'text' %>
+  <%= error_message_on :test, :input, :prepend_text => 'El fichero de datos ' %><br/>
+</div>
+
+<div>
+  <%= label_tag :test_latex_file, 'Fichero de latex' %><br />
+  <%= form.file_field :latex_file, :class => 'text' %>
+  <%= error_message_on :test, :input, :prepend_text => 'El fichero de latex ' %><br/>
+</div>
+
+<div>
+  <%= label_tag :test_image_files, 'Ficheros de imagen' %>
+  <div id="image_files">
+    <%= render :partial => 'new_image_file' %>
+  </div>
+
+  <a href="#" class="button"
+    onclick="$.get('/tests/new_image_file', function(data){ $('#image_files').append(data);}); return false">
+    <img src="/images/icons/add.png" /> A&ntilde;adir
+  </a>
+  <br/>
+</div>
+<br clear="both"/>

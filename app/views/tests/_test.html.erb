@@ -1,0 +1,51 @@
+<tr class="test">
+  <td class="description"><%=h test.description %></td>
+  
+  <td class="title">
+    <% unless logged_as_admin? %>
+      <%= link_to test.title, download_test_path(test) %>
+    <% else %> <%# si el usuario es un administrador no mostramos el enlace %>
+      <%=h test.title %>
+    <% end %>
+    <%# unless logged_as_admin? %>
+      <%# if user_solution = current_user.find_recent_solution_to_test(test.id) %>
+        <%# if user_solution.right? %> <%# si el usuario ha contestado la práctica bien => bandera verde %>
+          <%#*<span class="green">%>
+            <%#= test.title %>
+          <%#*</span>%>
+        <%# else %> <%# si el usuario ha contestado la práctica mal => bandera roja %>
+          <%#= link_to test.title, test, :class => 'red' %>
+        <%# end %>
+      <%# else %> <%# si el usuario no ha contestado la práctica => bandera purpura %>
+        <%#= link_to test.title, test, :class => '' %>
+      <%# end %>
+    <%# else %> <%# si el usuario es un administrador no mostramos el enlace %>
+      <%#= test.title %>
+    <%# end %>
+  </td>
+
+  
+  <% if logged_as_admin? %>
+    <td class="edit">
+      <%= link_to image_tag('icons/application_edit.png',
+        :alt => 'Editar', :title => 'Editar'), edit_test_path(test) %>
+    </td>
+    <td class="delete">
+      <%= link_to image_tag('icons/application_delete.png',
+        :alt => 'Eliminar', :title => 'Eliminar'), test,
+        :confirm => 'Estás seguro?', :method => :delete %>
+    </td>
+  <% else %>
+    <td class="results">
+      <% if user_solution = current_user.find_recent_solution_to_test(test.id) %>
+        <% if user_solution.right? %> <%# si el usuario ha contestado la práctica bien => bandera verde %>
+          <%= image_tag 'icons/flag_green.png' %>
+        <% else %> <%# si el usuario ha contestado la práctica mal => bandera roja %>
+          <%= link_to image_tag('icons/flag_red.png'), test %>
+        <% end %>
+      <% else %> <%# si el usuario no ha contestado la práctica => bandera purpura %>
+        <%= link_to image_tag('icons/flag_purple.png'), test %>
+      <% end %>
+    </td>
+  <% end %>
+</tr>

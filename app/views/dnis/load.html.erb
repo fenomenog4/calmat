@@ -1,0 +1,23 @@
+<h1>Carga de DNIs</h1>
+
+<%= render :partial => 'shared/flash_messages' %>
+
+<fieldset>
+  <legend>Introduce el fichero para la carga de DNIs</legend>
+
+  <% form_tag '#', :multipart => true do %>
+
+    <div>
+      <%= label_tag 'Fichero de carga' %><br />
+      <%= file_field_tag :file, :class => 'text' %><br/>
+    </div>
+
+    <div>
+      <button type="submit" class="button positive">
+        <%= image_tag 'icons/accept.png', :alt => '' %> Aceptar
+      </button>
+      <%= link_to image_tag('icons/cancel.png', :alt => '') + ' Cancelar', dnis_path,
+            :class => 'button negative' %>
+    </div>
+  <% end %>
+</fieldset>

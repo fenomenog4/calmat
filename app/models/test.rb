@@ -1,0 +1,107 @@
+require 'fileutils'
+require 'erb'
+
+class Test < ActiveRecord::Base
+
+  validates_presence_of :title
+
+  has_many :test_images, :dependent => :destroy
+  after_create :save_attachment_files
+  before_destroy :delete_files
+
+  @@per_page = 10
+  cattr_reader :per_page
+
+  def data_file=(data_file)
+    self.data_filename = data_file.original_filename
+    @data_file_data = data_file.read
+  end
+
+  def latex_file=(latex_file)
+    self.latex_filename = latex_file.original_filename
+    @latex_file_data = latex_file.read
+  end
+
+  def image_files=(image_files)
+    image_files.each do |image_file|
+      self.test_images << TestImage.new(:image_file => image_file)
+    end
+  end
+
+  def latex_template(user)
+    latex_template = ''
+
+    File.open("#{data_dir}/#{latex_filename}", 'r') do |f|
+      c1 = user.c1
+      c2 = user.c2
+      c3 = user.c3
+      c4 = user.c4
+      latex_template = ERB.new(f.read).result(binding)
+    end
+
+    latex_template
+  end
+
+  def data_template(user)
+    data_template = ''
+
+    File.open("#{data_dir}/#{data_filename}", 'r') do |f|
+      c1 = user.c1
+      c2 = user.c2
+      c3 = user.c3
+      c4 = user.c4
+      data_template = ERB.new(f.read).result(binding)
+    end
+
+    data_template
+  end
+
+  def data_dir
+    if self.id
+      "#{RAILS_ROOT}/data/tests/#{self.id}"
+    end
+  end
+
+  def data_filename_for(user)
+    data_filename.split('.')[0] + ".#{user.dni}.dat"
+  end
+
+  def latex_filename_for(user)
+    latex_filename.split('.')[0] + ".#{user.dni}.tex"
+  end
+
+  def dvi_filename_for(user)
+    latex_filename.split('.')[0] + ".#{user.dni}.dvi"
+  end
+
+  def pdf_filename_for(user)
+    latex_filename.split('.')[0] + ".#{user.dni}.pdf"
+  end
+
+  private
+
+  def save_attachment_files
+    FileUtils.mkdir_p data_dir
+
+    # latex file
+    file = File.new("#{data_dir}/#{self.latex_filename}" , "w")
+    file.write(@latex_file_data)
+    file.close
+
+    # data file
+    file = File.new("#{data_dir}/#{self.data_filename}" , "w")
+    file.write(@data_file_data)
+    file.close
+
+    # images_files
+    self.test_images.each do |image_file|
+      file = File.new("#{data_dir}/#{image_file.filename}" , "w")
+      file.write(image_file.image_file_data)
+      file.close
+    end
+  end
+
+  def delete_files
+    FileUtils.rm_rf data_dir
+  end
+end

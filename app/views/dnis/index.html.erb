@@ -1,0 +1,29 @@
+<h1>Listado de DNIs de alumnos</h1>
+
+<%= render :partial => 'shared/flash_messages' %>
+
+<% unless @dnis.empty? %>
+  <table class="dnis">
+    <tr>
+      <th>DNI</th>
+      <th>Eliminar</th>
+    </tr>
+
+    <%= render :partial => 'dni', :collection => @dnis %>
+  </table>
+<% else %>
+  <div class="notice">El listado de DNIs de alumnos est&aacute; vac&iacute;o</div>
+<% end %>
+
+<%= will_paginate @dnis %>
+
+<br />
+
+<%= link_to image_tag('icons/application_add.png', :alt => '') + ' Nuevo DNI',
+    new_dni_path, :class => 'button positive' %>
+
+<%= link_to image_tag('icons/book_add.png', :alt => '') + ' Cargar DNIs',
+    load_dnis_path, :class => 'button positive' %>
+
+<%= link_to image_tag('icons/book_delete.png', :alt => '') + ' Eliminar DNIs',
+    delete_all_dnis_path, :method => :delete, :class => 'button negative' %>

@@ -1,0 +1,17 @@
+<h1>Actualizar pr&aacute;ctica</h1>
+
+<fieldset>
+  <legend>Introduce los datos para actualizar la pr&aacute;ctica</legend>
+
+  <% form_for(@test, :html => {:multipart => true}) do |f| %>
+    <%= render f %>
+
+    <div>
+      <button type="submit" class="button positive">
+        <%= image_tag 'icons/accept.png', :alt => '' %> Actualizar
+      </button>
+      <%= link_to image_tag('icons/cancel.png', :alt => '') + ' Cancelar', tests_path,
+            :class => 'button negative' %>
+    </div>
+  <% end %>
+</fieldset>

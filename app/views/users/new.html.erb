@@ -1,0 +1,44 @@
+<h1>Nuevo registro</h1>
+
+<% if flash[:error] %>
+  <div class="error"><%= flash[:error] %></div>
+<% end %>
+
+<% @user.password = @user.password_confirmation = nil %>
+
+<% form_for :user, :url => users_path do |f| -%>
+  <fieldset>
+    <legend>
+      Rellene los siguientes datos para completar el alta
+    </legend>
+
+    <div>
+      <%= label_tag 'user_login', 'DNI' %><br/>
+      <%= f.text_field :login, :class => 'text' %>
+      <%= error_message_on :user, :login, :prepend_text => 'El DNI ' %><br/>
+    </div>
+
+    <div>
+      <%= label_tag 'user_email', 'Email' %><br/>
+      <%= f.text_field :email, :class => 'text' %>
+      <%= error_message_on :user, :email, :prepend_text => 'El email ' %><br/>
+    </div>
+
+    <div>
+      <%= label_tag 'user_password', 'Password' %><br/>
+      <%= f.password_field :password, :class => 'text' %>
+      <%= error_message_on :user, :password, :prepend_text => 'El password ' %><br/>
+    </div>
+
+    <div>
+      <%= label_tag 'user_password_confirmation', 'Confirmar password' %><br/>
+      <%= f.password_field :password_confirmation, :class => 'text' %>
+    </div>
+
+    <div>
+      <button type="submit" class="button positive">
+        <%= image_tag 'icons/accept.png', :alt => '' %> Registrarte
+      </button>
+    </div>
+  </fieldset>
+<% end -%>

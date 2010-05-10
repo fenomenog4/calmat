@@ -3,14 +3,14 @@ class UserMailer < ActionMailer::Base
     setup_email(user)
     @subject    += 'Por favor, activa tu cuenta'
   
-    @body[:url]  = "http://mseii.ugr.es/activate/#{user.activation_code}"
+    @body[:url]  = "http://mse2.ugr.es/activate/#{user.activation_code}"
   
   end
   
   def activation(user)
     setup_email(user)
     @subject    += 'Tu cuenta ha sido activada!'
-    @body[:url]  = "http://mseii.ugr.es/"
+    @body[:url]  = "http://mse2.ugr.es/"
   end
   
   protected
